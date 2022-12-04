@@ -11,7 +11,7 @@ gen-collection:
 	ruby gen-firewall-list.rb collection/all.doms RW_BYPASS_DOMS > rsc/collecton.rsc
 
 gen-collection-update-script:
-	cat mt-import-script-template |sed -e "s@##FILE##@/0010-collection.rsc@g" -e "s@##URL##@https://cloud1.ngtech.co.il/mikrotik-web-filter-bypass-domains/rsc/collecton.rsc@g" -e "s@##LIST_NAME##@RW_BYPASS_DOMS@g"
+	cat mt-import-script-template |sed -e "s@##FILE##@/0010-collection.rsc@g" -e "s@##URL##@https://raw.githubusercontent.com/elico/mikrotik-web-filter-bypass-domains/master/rsc/collecton.rsc@g" -e "s@##LIST_NAME##@RW_BYPASS_DOMS@g"
 
 git-add-collection:
 	git add collection/all.doms rsc/collecton.rsc
@@ -32,4 +32,4 @@ install:
 	cp -v update-mt-via-rest-api.sh /usr/local/bin/update-mt-via-rest-api.sh
 
 update-rb4011:
-	cd rest-api-scripts && ./update-mt-list.sh "RW_BYPASS_DOMS" "http://gogs.ngtech.home/NgTech-Home/mikrotik-web-filter-bypass-domains/raw/master/collection/all.doms"
+	cd rest-api-scripts && ./update-mt-list.sh "RW_BYPASS_DOMS" "https://raw.githubusercontent.com/elico/mikrotik-web-filter-bypass-domains/master/collection/all.doms"
