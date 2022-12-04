@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+COUNTER_FILE=".counter"
+
+CURRENT_COUNTER=$( cat "${COUNTER_FILE}" )
+
+CURRENT_COUNTER=$((CURRENT_COUNTER+1))
+
+echo "${CURRENT_COUNTER}" > "${COUNTER_FILE}" 

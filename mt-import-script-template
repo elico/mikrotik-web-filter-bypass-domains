@@ -1,0 +1,26 @@
+### Script HEAD
+:do {
+    :do {
+        /file remove "##FILE##";
+    } on-error={}
+/log info "Step1";
+
+/log info "Downloading ##URL## ...";
+    :do {
+        /tool fetch url=##URL## dst-path="##FILE##" mode=http
+    } on-error={
+/log info "Error. Download failed";
+    }
+
+    /ip firewall address-list remove [/ip firewall address-list find list=##LIST_NAME##]
+
+/log info "#### Importing ##FILE##...";
+    :do {
+        /import "##FILE##";
+    } on-error={
+/log info "import failed. unknown error.";
+    }
+/log info "Update Complete.";
+
+}
+### Script TAIL
